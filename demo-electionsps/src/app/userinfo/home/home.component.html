@@ -1,0 +1,15 @@
+<div class="stats-section">
+  <div 
+    class="stat-card" 
+    *ngFor="let stat of stats" 
+    (click)="goTo(stat.path)"
+    style="cursor: pointer;"
+  >
+    <div class="icon">
+      <i [class]="stat.icon"></i>
+    </div>
+    <h3>{{ stat.number }}</h3>
+    <p>{{ stat.label }}</p>
+  </div>
+</div>
+

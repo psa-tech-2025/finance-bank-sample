@@ -1,0 +1,76 @@
+/* container */
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  animation: wa-in 300ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* bubble */
+.wa-bubble {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg,#25D366,#128C7E);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.wa-bubble:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+}
+
+/* svg */
+.wa-icon {
+  width: 22px;
+  height: 22px;
+  fill: white;
+  flex: 0 0 22px;
+}
+
+/* label - hide on very small screens to save space */
+.wa-label {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+
+/* small badge with number */
+.wa-badge {
+  background: #fff;
+  color: #128c7e;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* entrance animation */
+@keyframes wa-in {
+  from { transform: translateY(25px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .whatsapp-float {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 56px;
+  }
+  .wa-label { display: none; } /* keep minimal on mobile */
+  .wa-bubble { padding: 10px; border-radius: 999px; }
+}

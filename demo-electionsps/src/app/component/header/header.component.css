@@ -1,0 +1,84 @@
+
+.bg-orange {
+  background-color: #f26522 !important;
+}
+
+.navbar-brand span {
+  color: #fff;
+
+}
+
+.nav-link {
+  color: #fff !important;
+  transition: color 0.3s ease;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+  color: #ffe0b2 !important;
+}
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border-top: 2px solid #0d6efd;
+  border-bottom: 2px solid #0d6efd;
+  white-space: nowrap;
+  padding: 10px 0;
+  position: relative;
+}
+
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.scroll-banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #004aad, #0077b6, #00b4d8);
+  color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-text {
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Optional hover effect */
+.scroll-banner:hover .scroll-text {
+  animation-play-state: paused;
+}
+

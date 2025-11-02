@@ -1,0 +1,57 @@
+<div class="events-container">
+  <h2 class="section-title">
+    <i class="fa-solid fa-calendar-days"></i> {{ 'EVENTSS' | translate }}
+  </h2>
+
+  <div *ngIf="isAdminLoggedIn" class="admin-toolbar">
+    <button class="btn btn-primary" (click)="toggleEdit()">+ {{ 'ADD_EVENT' | translate }}</button>
+  </div>
+
+  <div *ngIf="isEditing && isAdminLoggedIn" class="event-form">
+    <h3>{{ selectedEvent.id ? ('EDIT_EVENT' | translate) : ('ADD_EVENT' | translate) }}</h3>
+
+    <input [(ngModel)]="selectedEvent.title" [placeholder]="'EVENT_TITLE' | translate" class="form-control" />
+    <textarea [(ngModel)]="selectedEvent.description" [placeholder]="'DESCRIPTION' | translate" class="form-control"></textarea>
+    <input [(ngModel)]="selectedEvent.location" [placeholder]="'LOCATION' | translate" class="form-control" />
+    <input [(ngModel)]="selectedEvent.date" type="date" class="form-control" />
+
+    <select [(ngModel)]="selectedEvent.status" class="form-control">
+      <option value="upcoming">{{ 'UPCOMING' | translate }}</option>
+      <option value="completed">{{ 'COMPLETED' | translate }}</option>
+    </select>
+
+    <div class="form-buttons">
+      <button class="btn btn-success" (click)="saveEvent()">{{ 'SAVEE' | translate }}</button>
+      <button class="btn btn-secondary" (click)="toggleEdit()">{{ 'CANCELL' | translate }}</button>
+    </div>
+  </div>
+
+  <div class="event-grid">
+    <div *ngFor="let event of events" class="event-card">
+      <div class="event-header">
+        <h3>{{ event.title }}</h3>
+        <span
+          class="status"
+          [ngClass]="{
+            'upcoming': event.status === 'upcoming',
+            'completed': event.status === 'completed'
+          }"
+        >
+          {{ event.status === 'upcoming' ? ('UPCOMING' | translate) : ('COMPLETED' | translate) }}
+        </span>
+      </div>
+
+      <p class="description">{{ event.description }}</p>
+
+      <div class="details">
+        <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
+        <p><i class="fa-solid fa-calendar"></i> {{ event.date }}</p>
+      </div>
+
+      <div *ngIf="isAdminLoggedIn" class="admin-actions">
+        <button class="btn btn-warning" (click)="editEvent(event)">{{ 'EDITT' | translate }}</button>
+        <button class="btn btn-danger" (click)="deleteEvent(event.id)">{{ 'DELETEE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

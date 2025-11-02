@@ -1,0 +1,21 @@
+<p>userfetch works!</p>
+    <!-- <div *ngFor="let url of imageUrls">
+      <img [src]="url" alt="Uploaded Image" width="200">
+    </div> -->
+
+    
+
+<div>
+  <div>
+     <button type="button" class="btn btn-outline-success" (click)="logout()">Logout</button>
+</div>
+<h3>Upload Image</h3>
+<input type="file" (change)="onFileSelected($event)">
+
+<h3>Uploaded Images</h3>
+<div class="image-grid">
+  <div class="image-item" *ngFor="let img of images">
+  <img [src]="img.url" alt="Uploaded" width="200">
+  <button class="delete-btn" (click)="deleteImage(img)">Delete</button>
+</div>
+</div>

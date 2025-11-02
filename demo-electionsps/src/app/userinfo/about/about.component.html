@@ -1,0 +1,107 @@
+
+<div class="contact-container">
+  <h2><i class="fa-solid fa-user"></i> {{ 'ABOUT_ME' | translate }}</h2>
+
+  <!-- 🟢 Show Manage Button for Admin -->
+  <div *ngIf="isAdminLoggedIn" class="admin-edit-btn">
+    <button (click)="toggleEditMode()">
+      <i class="fa-solid fa-pen-to-square"></i> {{ 'MANAGE_PROFILE' | translate }}
+    </button>
+  </div>
+
+  <div class="contact-card">
+    <!-- Left Section -->
+    <div class="left-section">
+      <div class="profile">
+        <img [src]="contactData.imageUrl || 'assets/images/default-profile.jpg'" alt="Profile">
+      </div>
+
+      <div class="info-block">
+        <p class="label">{{ 'NAMEE' | translate }}</p>
+        <p class="value">{{ contactData.name }}</p>
+      </div>
+
+      <div class="info-block">
+        <p class="label">{{ 'DESIGNATIONN' | translate }}</p>
+        <p class="value">{{ contactData.designation }}</p>
+      </div>
+
+      <div class="info-block">
+        <p class="label">{{ 'PARTY' | translate }}</p>
+        <p class="value">{{ contactData.party }}</p>
+      </div>
+
+      <div class="info-block">
+        <p class="label">{{ 'EDUCATION' | translate }}</p>
+        <p class="value">{{ contactData.education }}</p>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <h3>{{ 'BIO' | translate }}</h3>
+      <p>{{ contactData.bio }}</p>
+
+      <h3>{{ 'CONTACT_INFO' | translate }}</h3>
+      <div class="contact-info">
+        <div class="info-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>{{ contactData.phone }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>{{ contactData.email }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-building"></i>
+          <span>{{ contactData.address }}</span>
+        </div>
+      </div>
+
+      <h3>{{ 'SOCIAL_MEDIA' | translate }}</h3>
+      <div class="social-links">
+        <button class="fb">Facebook</button>
+        <button class="tw">Twitter</button>
+        <button class="ig">Instagram</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🟣 Edit Form (Only Admin & Edit Mode) -->
+  <div *ngIf="isAdminLoggedIn && editMode" class="edit-contact-form">
+    <h3><i class="fa-solid fa-user-pen"></i> {{ 'EDIT_DETAILS' | translate }}</h3>
+
+    <label>{{ 'UPLOAD_IMAGE' | translate }}</label>
+    <input type="file" (change)="onFileSelected($event)">
+
+    <label>{{ 'NAMEE' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.name">
+
+    <label>{{ 'DESIGNATIONN' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.designation">
+
+    <label>{{ 'PARTY' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.party">
+
+    <label>{{ 'EDUCATION' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.education">
+
+    <label>{{ 'BIO' | translate }}</label>
+    <textarea [(ngModel)]="contactData.bio"></textarea>
+
+    <label>{{ 'PHONE' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.phone">
+
+    <label>{{ 'EMAIL' | translate }}</label>
+    <input type="email" [(ngModel)]="contactData.email">
+
+    <label>{{ 'ADDRESS' | translate }}</label>
+    <input type="text" [(ngModel)]="contactData.address">
+
+    <div class="form-buttons">
+      <button (click)="saveContact()"><i class="fa-solid fa-floppy-disk"></i> {{ 'SAVE' | translate }}</button>
+      <button (click)="deleteContact()"><i class="fa-solid fa-trash"></i> {{ 'DELETE' | translate }}</button>
+      <button (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i> {{ 'CANCEL' | translate }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,217 @@
+/* 🌟 Main Container */
+.admin-contact-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin: 30px auto;
+  max-width: 1100px;
+  transition: all 0.3s ease;
+}
+
+/* 🚫 Not Admin Section */
+.not-admin {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 18px;
+  color: #d9534f;
+}
+
+/* 📋 Table Styling */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 14px;
+}
+
+.contact-table th,
+.contact-table td {
+  border: 1px solid #e5e5e5;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.contact-table th {
+  background: #f8f8f8;
+  color: #333;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.contact-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.contact-table tr:hover {
+  background-color: #f0f8ff;
+  transition: background 0.2s ease;
+}
+
+/* 🔢 Serial Number */
+.contact-table td:first-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* 🖼️ Photo */
+.contact-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+/* 🔗 Download Link */
+.download-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+.download-link:hover {
+  text-decoration: underline;
+}
+
+/* 🚫 No Data */
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+  margin-top: 20px;
+}
+
+/* 🧾 Admin Form */
+form {
+  margin-top: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* 📸 Logo Preview */
+form img {
+  display: block;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* 💾 Button */
+.btn-primary {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+/* ✅ Success Message */
+.message {
+  margin-top: 15px;
+  color: #28a745;
+  font-weight: 600;
+}
+
+/* 🏷️ Header Title */
+.admin-contact-container h2 {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #d9534f;
+  font-size: 1.5rem;
+}
+
+/* 📁 File Input */
+.form-grid input[type="file"] {
+  padding: 8px;
+  background-color: #fafafa;
+  border: 1px dashed #ccc;
+  cursor: pointer;
+}
+.form-grid input[type="file"]:hover {
+  background-color: #f1f1f1;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 992px) {
+  .admin-contact-container {
+    padding: 20px;
+  }
+
+  .contact-table th,
+  .contact-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  form img {
+    height: 50px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-contact-container {
+    margin: 20px;
+    padding: 16px;
+  }
+
+  .admin-contact-container h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-table th,
+  .contact-table td {
+    font-size: 12px;
+  }
+
+  form input {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}

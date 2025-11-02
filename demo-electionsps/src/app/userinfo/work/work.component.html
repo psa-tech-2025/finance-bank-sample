@@ -1,0 +1,73 @@
+<div class="work-container">
+  <h2 class="section-title">
+    <i class="fas fa-trophy"></i> {{ 'workTitle' | translate }}
+  </h2>
+
+  <!-- Admin Add Button -->
+  <div *ngIf="isAdminLoggedIn" class="admin-toolbar">
+    <button class="btn btn-primary" (click)="toggleForm()">
+      + {{ 'addWork' | translate }}
+    </button>
+  </div>
+
+  <!-- Admin Form -->
+  <div *ngIf="showForm && isAdminLoggedIn" class="work-form">
+    <input
+      [(ngModel)]="selectedWork.title"
+      [placeholder]="'workTitlePlaceholder' | translate"
+      class="form-control"
+    />
+    <textarea
+      [(ngModel)]="selectedWork.description"
+      [placeholder]="'workDescPlaceholder' | translate"
+      class="form-control"
+    ></textarea>
+    <input
+      [(ngModel)]="selectedWork.year"
+      [placeholder]="'workYearPlaceholder' | translate"
+      class="form-control"
+    />
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      class="form-control"
+    />
+
+    <div class="form-buttons">
+      <button class="btn btn-success" (click)="saveWork()">
+        {{ 'save' | translate }}
+      </button>
+      <button class="btn btn-secondary" (click)="cancelEdit()">
+        {{ 'cancel' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Work List -->
+  <div class="work-grid">
+    <div class="work-card" *ngFor="let work of works">
+      <div class="work-header">
+        <h3>{{ work.title }}</h3>
+        <span class="work-year">{{ work.year }}</span>
+      </div>
+
+      <p class="work-desc">{{ work.description }}</p>
+
+      <img
+        *ngIf="work.imageUrl"
+        [src]="work.imageUrl"
+        class="work-image"
+        alt="work image"
+      />
+
+      <div *ngIf="isAdminLoggedIn" class="admin-actions">
+        <button class="btn btn-warning" (click)="editWork(work)">
+          {{ 'edit' | translate }}
+        </button>
+        <button class="btn btn-danger" (click)="deleteWork(work.id)">
+          {{ 'delete' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

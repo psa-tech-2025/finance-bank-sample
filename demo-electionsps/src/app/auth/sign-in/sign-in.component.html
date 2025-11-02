@@ -1,0 +1,23 @@
+<div class="login-page d-flex align-items-center justify-content-center min-vh-100">
+  <div class="login-card card shadow">
+    <div class="card-body">
+      <form>
+        <div class="mb-4 text-center">
+          <h4 class="text-dark fw-bold">Login</h4>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="password" />
+        </div>
+
+        <button type="button" class="btn btn-info w-100" (click)="login()">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

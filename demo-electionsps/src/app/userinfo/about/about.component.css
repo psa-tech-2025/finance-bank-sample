@@ -1,0 +1,242 @@
+.contact-container {
+  padding: 40px;
+  background: #fff7f2;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  max-width: 1000px;
+  margin: 40px auto;
+  transition: all 0.3s ease;
+}
+
+.contact-container h2 {
+  font-size: 28px;
+  color: #d94e1f;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-card {
+  display: flex;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.left-section {
+  width: 40%;
+  background: #fff1e6;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile {
+  position: relative;
+}
+
+.profile img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f57c00;
+  margin-bottom: 10px;
+}
+
+.upload-btn input {
+  position: absolute;
+  top: 70%;
+  left: 30%;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.info-block {
+  margin: 15px 0;
+}
+
+.label {
+  color: #555;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.value, input {
+  color: #222;
+  font-size: 16px;
+  background: #fffdfb;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  width: 100%;
+}
+
+.right-section {
+  width: 60%;
+  padding: 20px 30px;
+}
+
+.right-section h3 {
+  color: #e14b1d;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.contact-info {
+  margin-top: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.social-links button {
+  margin-right: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fb { background-color: #1877f2; }
+.tw { background-color: #1da1f2; }
+.ig { background-color: #e4405f; }
+
+.admin-actions button {
+  margin-top: 20px;
+  margin-right: 10px;
+  background: #d94e1f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-actions button:hover {
+  background: #b83e16;
+}
+
+.contact-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.left-section {
+  flex: 1;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+}
+
+.info-block {
+  margin: 15px 0;
+}
+
+.label {
+  font-weight: bold;
+  color: #555;
+}
+
+.value {
+  font-size: 1.1em;
+  color: #222;
+}
+
+.right-section {
+  flex: 2;
+  padding: 10px;
+}
+
+.contact-info {
+  margin-top: 15px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  color: #444;
+}
+
+.info-item i {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.social-links button {
+  margin-right: 10px;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.fb { background-color: #1877f2; }
+.tw { background-color: #1da1f2; }
+.ig { background-color: #e1306c; }
+
+.edit-contact-form {
+  margin-top: 30px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.edit-contact-form input,
+.edit-contact-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-buttons button {
+  margin-right: 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-buttons button:hover {
+  background: #0056b3;
+}
+
+.admin-edit-btn {
+  text-align: right;
+  margin-bottom: 10px;
+}

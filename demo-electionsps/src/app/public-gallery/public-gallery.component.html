@@ -1,0 +1,9 @@
+<div class="gallery-container">
+  <h2 class="gallery-title">Public Image Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item" *ngFor="let img of imageUrls">
+      <img [src]="img" alt="Uploaded Image">
+    </div>
+  </div>
+</div>
+

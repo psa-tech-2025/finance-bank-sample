@@ -1,0 +1,9 @@
+<div class="gallery">
+    <h3> product list</h3>
+      <div class="card" *ngFor="let p of products">
+        <img [src]="p.imageUrl || 'assets/no-image.png'">
+        <h3>{{p.name}}</h3>
+        <p>{{p.description}}</p>
+        <div class="price">₹{{p.price}}</div>
+      </div>
+    </div>

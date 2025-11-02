@@ -1,0 +1,75 @@
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- <div class="footer-column">
+      <h3>पक्षाविषयी</h3>
+      <ul>
+        <li>ध्येय-धोरणं</li>
+        <li>प्रमुख भूमिका</li>
+        <li>मुख्य कार्यकारिणी</li>
+        <li>पक्षाचा इतिहास</li>
+      </ul>
+    </div> -->
+    <div class="footer-column">
+      <h3>माध्यम</h3>
+      <ul>
+        <!-- <li>महत्त्वाची पत्रं</li> -->
+        <li routerLink="/news">ताज्या घडामोडी</li>
+        <!-- <li>ई-ग्रंथालय</li> -->
+        <!-- <li>संपर्क</li> -->
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>महत्त्वाचे दुवे</h3>
+      <ul>
+        <!-- <li>आम्ही काय केलं</li> -->
+        <!-- <li>जागर मराठीचा</li> -->
+        <!-- <li>दर्ज़ेदार जीवनमान</li> -->
+        <li routerLink="/contact">संपर्क</li>
+      </ul>
+    </div>
+    <!-- <div class="footer-column office">
+      <!-- <h3>पक्षाचे नाव,<br />कार्यालयाचा पत्ता.</h3> -->
+       <!-- <h3>कार्यालयाचा पत्ता.</h3>
+      <p>
+        दुसरा मजला, मातोश्री टॉवर्स, पद्माबाई  मार्ग, ,<br />
+        मुंबई, महाराष्ट्र, ४०००१६.
+      </p>
+      <div class="social-icons">
+        <a [href]="contactInfo.facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a [href]="contactInfo.twitter" ><i class="fab fa-twitter"></i></a>
+        <a [href]="contactInfo.instagram"><i class="fab fa-instagram"></i></a>
+        <a ><i class="fab fa-youtube"></i></a>
+      </div>
+    </div> --> 
+    <div class="footer-column office">
+  <h3>कार्यालयाचा पत्ता.</h3>
+  <p>
+    {{ contactInfo.address || 'पत्ता उपलब्ध नाही' }}
+  </p>
+  <p>
+    📞 {{ contactInfo.phone }} <br />
+    ✉️ {{ contactInfo.email }}
+  </p>
+  <div class="social-icons">
+    <a *ngIf="contactInfo.facebook" [href]="contactInfo.facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a *ngIf="contactInfo.twitter" [href]="contactInfo.twitter" target="_blank">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a *ngIf="contactInfo.instagram" [href]="contactInfo.instagram" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</div>
+
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    © २०२5 सर्व हक्क आरक्षित
+    <div>
+        <a href="https://psatechall.com/" target="_blank">PSA Tech द्वारा विकसित</a>
+    </div>
+  </div>
+</footer>

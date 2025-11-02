@@ -1,0 +1,22 @@
+<div class="admin-wrap">
+  <h2>Products</h2>
+  <a routerLink="/admin/products/add" class="btn">Add Product</a>
+
+  <div *ngIf="products.length === 0">No products yet.</div>
+  <div class="grid">
+    <div class="card" *ngFor="let p of products">
+      <img [src]="p.imageUrl || 'assets/no-image.png'" alt="{{p.name}}">
+      <h3>{{p.name}}</h3>
+      <p>{{p.description}}</p>
+      <div class="meta">
+        <span>₹{{p.price}}</span>
+        <span>ID: {{p.productId}}</span>
+      </div>
+      <div class="actions">
+        <button (click)="editProduct(p)">Edit</button>
+        <button (click)="deleteProduct(p)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

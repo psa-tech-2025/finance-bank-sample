@@ -1,0 +1,27 @@
+<div class="form-wrap">
+  <h2>{{ isEdit ? 'Edit' : 'Add' }} Product</h2>
+
+  <label>Product ID</label>
+  <input [(ngModel)]="product.productId" required>
+
+  <label>Name</label>
+  <input [(ngModel)]="product.name" required>
+
+  <label>Price</label>
+  <input type="number" [(ngModel)]="product.price" required>
+
+  <label>Description</label>
+  <textarea [(ngModel)]="product.description"></textarea>
+
+  <label>Image</label>
+  <input type="file" (change)="onFileChange($event)">
+
+  <div *ngIf="product.imageUrl">
+    <p>Current Image:</p>
+    <img [src]="product.imageUrl" width="200">
+  </div>
+
+  <button (click)="save()">{{ isEdit ? 'Update' : 'Create' }}</button>
+  <a routerLink="/admin/products">Cancel</a>
+</div>
+

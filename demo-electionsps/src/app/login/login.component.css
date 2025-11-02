@@ -1,0 +1,12 @@
+.container {
+  max-width: 500px;
+}
+
+form {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+button {
+  min-width: 120px;
+}

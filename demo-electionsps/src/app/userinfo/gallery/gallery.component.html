@@ -1,0 +1,59 @@
+<h2 class="gallery-title">📸 {{ 'photoGallery' | translate }}</h2>
+
+<div *ngIf="isAdminLoggedIn" class="admin-toolbar">
+  <button 
+    class="btn btn-primary" 
+    (click)="toggleForm()" 
+    *ngIf="galleryPhotos.length < 10"
+  >
+    + {{ 'addPhoto' | translate }}
+  </button>
+
+  <!-- Optional message when max reached -->
+  <p *ngIf="galleryPhotos.length >= 10" class="text-danger mt-2">
+    ⚠️ Maximum 10 photos allowed in gallery.
+  </p>
+</div>
+
+
+<div *ngIf="showForm && isAdminLoggedIn" class="gallery-form">
+  <input [(ngModel)]="selectedPhoto.caption" placeholder="{{ 'caption' | translate }}" class="form-control" />
+  <textarea [(ngModel)]="selectedPhoto.description" placeholder="{{ 'description' | translate }}" class="form-control"></textarea>
+  <input [(ngModel)]="selectedPhoto.date" placeholder="{{ 'date' | translate }}" class="form-control" />
+  <input type="file" (change)="onFileSelected($event)" class="form-control" />
+
+  <div class="form-buttons">
+    <button class="btn btn-success" (click)="savePhoto()">{{ 'gsave' | translate }}</button>
+    <button class="btn btn-secondary" (click)="cancelEdit()">{{ 'gcancel' | translate }}</button>
+  </div>
+</div>
+
+<div class="gallery-grid">
+  <div class="gallery-card" *ngFor="let photo of galleryPhotos">
+    <img [src]="photo.imageUrl" alt="gallery image" class="gallery-image" />
+    <div class="gallery-content">
+      <h4 class="gallery-caption">{{ photo.caption }}</h4>
+      <p class="gallery-desc">{{ photo.description }}</p>
+      <p class="gallery-date">{{ photo.date }}</p>
+
+      <button class="btn btn-outline-primary btn-sm" (click)="viewPhoto(photo)">👁 {{ 'gview' | translate }}</button>
+
+      <div *ngIf="isAdminLoggedIn" class="admin-actions">
+        <button class="btn btn-warning btn-sm" (click)="editPhoto(photo)">{{ 'gedit' | translate }}</button>
+        <button class="btn btn-danger btn-sm" (click)="deletePhoto(photo.id)">{{ 'gdelete' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="showViewModal" class="modal-backdrop" (click)="closeViewModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close-btn" (click)="closeViewModal()">×</span>
+    <img [src]="viewedPhoto?.imageUrl" alt="Photo" class="modal-image" />
+    <h3 class="modal-caption">{{ viewedPhoto?.caption }}</h3>
+    <p class="modal-desc">{{ viewedPhoto?.description }}</p>
+    <p class="modal-date">{{ viewedPhoto?.date }}</p>
+    <button class="btn btn-secondary mt-2" (click)="closeViewModal()">{{ 'gclose' | translate }}</button>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+
+<div>
+     <button type="button" class="btn btn-outline-success" (click)="logout()">Logout</button>
+</div>
+<div class="container mt-4">
+  <h4>Post Message</h4>
+  <form [formGroup]="userForm" (ngSubmit)="saveEntry()" class="mb-4 border rounded p-3 shadow">
+    <div class="mb-3">
+      <label>Message</label>
+      <textarea formControlName="message" rows="2" class="form-control" placeholder="Enter message"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Upload Picture</label>
+      <input type="file" (change)="onImageChange($event)" class="form-control" accept="image/*">
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Add Message</button>
+  </form>
+
+  <h5>Your Entries</h5>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Message</th>
+        <th>Picture</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of getUserEntries(); let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ entry.message }}</td>
+        <td>
+          <img *ngIf="entry.image" [src]="entry.image" alt="pic" width="100">
+        </td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteEntry(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

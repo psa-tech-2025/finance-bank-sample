@@ -1,0 +1,64 @@
+<div class="navbar-header">
+  <div class="logo">
+    <img class="logo-img" [src]="headerData.image || 'assets/images/default.jpg'" alt="">
+  </div>
+
+  <div>
+    <h2>{{ headerData.name || ('NAME' | translate) }}</h2>
+    <p>{{ headerData.designation || ('DESIGNATION' | translate) }}</p>
+  </div>
+
+  <!-- 🟢 Show only when admin is logged in -->
+  <div *ngIf="isAdminLoggedIn" class="edit-header-btn">
+  <button (click)="toggleEdit()">
+    <i class="fa-solid fa-pen-to-square"></i> {{ 'MANAGE_HEADER' | translate }}
+  </button>
+</div>
+</div>
+
+
+
+<!-- 🟠 Edit Form (visible only in edit mode) -->
+<div *ngIf="isEditing && isAdminLoggedIn" class="edit-header-form">
+  <label>{{ 'UPLOAD_IMAGE' | translate }}:</label>
+  <input type="file" (change)="onFileSelected($event)">
+
+  <label>{{ 'ENTER_NAME' | translate }}:</label>
+  <input type="text" [(ngModel)]="headerData.name" placeholder="{{ 'ENTER_NAME' | translate }}">
+
+  <label>{{ 'ENTER_DESIGNATION' | translate }}:</label>
+  <input type="text" [(ngModel)]="headerData.designation" placeholder="{{ 'ENTER_DESIGNATION' | translate }}">
+
+  <div class="form-buttons">
+    <button (click)="saveHeader()"><i class="fa-solid fa-floppy-disk"></i> {{ 'SAVE' | translate }}</button>
+    <button (click)="deleteHeader()"><i class="fa-solid fa-trash"></i> {{ 'DELETE' | translate }}</button>
+    <button  (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i> {{ 'CANCEL' | translate }}</button>
+  </div>
+</div>
+
+<!-- Your existing menu buttons below -->
+<div class="navbar-links">
+  <button routerLink="/home"><i class="fa-solid fa-house"></i> {{ 'HOME' | translate }}</button>
+  <button routerLink="/news"><i class="fa-solid fa-newspaper"></i> {{ 'NEWSS' | translate }}</button>
+  <button routerLink="/galaryy"><i class="fa-solid fa-camera"></i> {{ 'GALLERY' | translate }}</button>
+  <button routerLink="/about"><i class="fa-solid fa-user"></i> {{ 'ABOUT' | translate }}</button>
+  <button routerLink="/work"><i class="fa-solid fa-trophy"></i> {{ 'WORK' | translate }}</button>
+  <button routerLink="event"><i class="fa-solid fa-calendar-days"></i> {{ 'EVENTS' | translate }}</button>
+  <!-- <button><i class="fa-solid fa-file-lines"></i> {{ 'SCHEME' | translate }}</button> -->
+  <button routerLink="/contact" ><i class="fa-solid fa-phone"></i> {{ 'CONTACT' | translate }}</button>
+  <button routerLink="/admin/contacts"><i class="fa-solid fa-calendar-days"></i> Admin Only</button> 
+
+  <!-- Admin toggle -->
+  <button *ngIf="!isAdminLoggedIn" (click)="goToLogin()">
+    <i class="fa-solid fa-user-shield"></i> {{ 'ADMIN_LOGIN' | translate }}
+  </button>
+
+  <button *ngIf="isAdminLoggedIn" (click)="logout()">
+    <i class="fa-solid fa-right-from-bracket"></i> {{ 'LOGOUT' | translate }}
+  </button>
+
+</div>
+    <div class="language-toggle">
+    <button (click)="switchLang('en')">ENGLISH</button>
+    <button (click)="switchLang('mr')">मराठी</button>
+  </div>

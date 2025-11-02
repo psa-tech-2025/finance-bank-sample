@@ -1,0 +1,215 @@
+/* 🌟 Main Container */
+.events-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🗓️ Section Title */
+.section-title {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title i {
+  color: #007bff;
+  font-size: 1.8rem;
+}
+
+/* 👨‍💼 Admin Toolbar */
+.admin-toolbar {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.admin-toolbar .btn {
+  background: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.admin-toolbar .btn:hover {
+  background: #0056b3;
+}
+
+/* 📝 Event Form */
+.event-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.event-form h3 {
+  margin-bottom: 15px;
+  color: #444;
+  font-weight: 600;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.event-form .form-control {
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.event-form .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.event-form .btn-success {
+  background: #28a745;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.event-form .btn-success:hover {
+  background: #218838;
+}
+
+.event-form .btn-secondary {
+  background: #6c757d;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* 🧩 Event Grid */
+/* 🧩 Event Grid */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 💻 Desktop: 2 cards per row */
+  gap: 25px;
+}
+
+/* 📱 Responsive for Mobile */
+@media (max-width: 768px) {
+  .event-grid {
+    grid-template-columns: 1fr; /* Mobile: 1 card per row */
+  }
+}
+
+/* 📅 Event Card */
+.event-card {
+  background: linear-gradient(135deg, #f3f8ff, #ffffff);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 📋 Header */
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event-header h3 {
+  color: #222;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 🔖 Status Badge */
+.status {
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status.upcoming {
+  background: #007bff;
+}
+
+.status.completed {
+  background: #28a745;
+}
+
+/* 🗒️ Description */
+.description {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* 📍 Details */
+.details {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+.details i {
+  color: #007bff;
+  margin-right: 5px;
+}
+
+/* ⚙️ Admin Actions */
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.admin-actions .btn {
+  padding: 6px 12px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.btn-warning {
+  background: #ffc107;
+  border: none;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+.btn-danger {
+  background: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}

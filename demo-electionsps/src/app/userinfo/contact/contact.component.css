@@ -1,0 +1,141 @@
+.contact-section {
+  background-color: #fffaf5;
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e85c0d;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 25px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title,
+.info-title {
+  font-size: 1.2rem;
+  color: #e85c0d;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #e85c0d;
+  box-shadow: 0 0 0 2px rgba(232, 92, 13, 0.1);
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.btn-submit {
+  background-color: #e85c0d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1rem;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #cf4f0a;
+}
+
+/* Right Column Info Cards */
+.info-card p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-card i {
+  color: #e85c0d;
+  font-size: 1.1rem;
+}
+
+/* Social Media */
+.social-card .social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+
+.social-card .social-btn:hover {
+  transform: translateY(-3px);
+}
+
+.fb {
+  background-color: #1d4ed8;
+}
+
+.tw {
+  background-color: #0284c7;
+}
+
+.ig {
+  background-color: #d41d66;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right-column {
+    margin-top: 20px;
+  }
+}
