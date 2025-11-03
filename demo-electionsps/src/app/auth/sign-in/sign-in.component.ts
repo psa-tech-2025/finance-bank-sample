@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
   }
 
   signInWithGoogle() {
-    this.auth.googleSignIn();
+    // this.auth.googleSignIn();
   }
 
 }

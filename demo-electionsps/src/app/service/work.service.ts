@@ -17,10 +17,12 @@ export interface Work {
   providedIn: 'root'
 })
 export class WorkService {
+  private projectName = 'financedemo'; // ✅ main folder name
   private workCollection: AngularFirestoreCollection<Work>;
 
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
-    this.workCollection = this.afs.collection<Work>('works');
+    // ✅ Store Firestore data inside a subcollection under financedemo
+    this.workCollection = this.afs.collection<Work>(`${this.projectName}/data/works`);
   }
 
   // ✅ Get all works
@@ -42,7 +44,8 @@ export class WorkService {
     let imageUrl = '';
 
     if (file) {
-      const path = `works/${createdAt}_${file.name}`;
+      // ✅ Store image in financedemo folder inside Firebase Storage
+      const path = `${this.projectName}/works/${createdAt}_${file.name}`;
       const uploadTask = await this.storage.upload(path, file);
       imageUrl = await uploadTask.ref.getDownloadURL();
     }
@@ -56,7 +59,8 @@ export class WorkService {
     let imageUrl = work.imageUrl;
 
     if (file) {
-      const path = `works/${Date.now()}_${file.name}`;
+      // ✅ Updated path for financedemo folder
+      const path = `${this.projectName}/works/${Date.now()}_${file.name}`;
       const uploadTask = await this.storage.upload(path, file);
       imageUrl = await uploadTask.ref.getDownloadURL();
     }

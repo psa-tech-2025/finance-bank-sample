@@ -15,28 +15,46 @@ export interface EventItem {
   providedIn: 'root'
 })
 export class EventService {
-
-  private collectionName = 'events';
+  private projectName = 'financedemo'; // 🔹 Project name
+  private subCollectionName = 'events'; // 🔹 Subcollection name
 
   constructor(private firestore: AngularFirestore) {}
 
   // 🔹 Get all events
   getEvents(): Observable<EventItem[]> {
-    return this.firestore.collection<EventItem>(this.collectionName).valueChanges({ idField: 'id' });
+    return this.firestore
+      .collection(this.projectName) // Collection: financedemo
+      .doc(this.projectName)        // Document: financedemo
+      .collection<EventItem>(this.subCollectionName)
+      .valueChanges({ idField: 'id' });
   }
 
   // 🔹 Add event
   addEvent(event: EventItem) {
-    return this.firestore.collection(this.collectionName).add(event);
+    return this.firestore
+      .collection(this.projectName)
+      .doc(this.projectName)
+      .collection(this.subCollectionName)
+      .add(event);
   }
 
   // 🔹 Update event
   updateEvent(event: EventItem) {
-    return this.firestore.collection(this.collectionName).doc(event.id).update(event);
+    return this.firestore
+      .collection(this.projectName)
+      .doc(this.projectName)
+      .collection(this.subCollectionName)
+      .doc(event.id)
+      .update(event);
   }
 
   // 🔹 Delete event
   deleteEvent(id: string) {
-    return this.firestore.collection(this.collectionName).doc(id).delete();
+    return this.firestore
+      .collection(this.projectName)
+      .doc(this.projectName)
+      .collection(this.subCollectionName)
+      .doc(id)
+      .delete();
   }
 }

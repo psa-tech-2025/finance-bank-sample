@@ -85,10 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireModule.initializeApp(environment.firebase),
     // Initialize Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-
     // Firestore
     provideFirestore(() => getFirestore()),
-
     // Storage
     provideStorage(() => getStorage()),
     

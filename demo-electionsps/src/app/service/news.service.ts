@@ -8,7 +8,13 @@ import {
   doc,
   collectionData
 } from '@angular/fire/firestore';
-import { Storage, ref, uploadBytes, getDownloadURL, deleteObject } from '@angular/fire/storage';
+import {
+  Storage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject
+} from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 export interface NewsItem {
@@ -25,47 +31,59 @@ export interface NewsItem {
 
 @Injectable({ providedIn: 'root' })
 export class NewsService {
-  private newsCollection = collection(this.firestore, 'news');
+  // ✅ Your root project folder
+  private projectName = 'financedemo';
+
+  // ✅ Firestore collection inside financedemo
+  private newsCollection = collection(this.firestore, `${this.projectName}/data/news`);
 
   constructor(private firestore: Firestore, private storage: Storage) {}
 
-  /** Get all news */
+  /** ✅ Get all news items */
   getAll(): Observable<NewsItem[]> {
     return collectionData(this.newsCollection, { idField: 'id' }) as Observable<NewsItem[]>;
   }
 
-  /** Add new news with optional image upload */
+  /** ✅ Add new news item (with optional image upload) */
   async add(news: NewsItem, file?: File): Promise<void> {
     let imageUrl = '';
+
     if (file) {
-      const path = `news/${Date.now()}_${file.name}`;
+      // ✅ Store uploaded file under financedemo/news/
+      const path = `${this.projectName}/news/${Date.now()}_${file.name}`;
       const storageRef = ref(this.storage, path);
       await uploadBytes(storageRef, file);
       imageUrl = await getDownloadURL(storageRef);
     }
+
     await addDoc(this.newsCollection, { ...news, image: imageUrl });
   }
 
-  /** Update existing news */
+  /** ✅ Update an existing news item */
   async update(id: string, news: NewsItem, file?: File): Promise<void> {
-    const docRef = doc(this.firestore, `news/${id}`);
+    const docRef = doc(this.firestore, `${this.projectName}/data/news/${id}`);
+
     if (file) {
-      const path = `news/${Date.now()}_${file.name}`;
+      const path = `${this.projectName}/news/${Date.now()}_${file.name}`;
       const storageRef = ref(this.storage, path);
       await uploadBytes(storageRef, file);
       const imageUrl = await getDownloadURL(storageRef);
       news.image = imageUrl;
     }
+
     await updateDoc(docRef, { ...news });
   }
 
-  /** Delete news */
+  /** ✅ Delete news item (and image if present) */
   async delete(id: string, imageUrl?: string): Promise<void> {
+    // Delete from storage first (if exists)
     if (imageUrl) {
       const imgRef = ref(this.storage, imageUrl);
       await deleteObject(imgRef).catch(() => {});
     }
-    const docRef = doc(this.firestore, `news/${id}`);
+
+    // Then delete Firestore document
+    const docRef = doc(this.firestore, `${this.projectName}/data/news/${id}`);
     await deleteDoc(docRef);
   }
 }

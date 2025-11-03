@@ -8,34 +8,42 @@ import { finalize, Observable } from 'rxjs';
 })
 export class AboutService {
 
-    constructor(private firestore: AngularFirestore, private storage: AngularFireStorage) {}
+  private projectName = 'financedemo'; // 🔹 Project name prefix
+  private contactCollection = 'about' // 🔹 Collection name
 
-      uploadImage(file: File): Observable<string | undefined> {
-        const filePath = `contact/${Date.now()}_${file.name}`;
-        const fileRef = this.storage.ref(filePath);
-        const task = this.storage.upload(filePath, file);
-    
-        return new Observable<string | undefined>((observer) => {
-          task.snapshotChanges().pipe(
-            finalize(() => {
-              fileRef.getDownloadURL().subscribe({
-                next: (url) => {
-                  observer.next(url);
-                  observer.complete();
-                },
-                error: (err) => observer.error(err)
-              });
-            })
-          ).subscribe();
-        });
-      }
+  constructor(
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {}
 
-        saveContact(data: any) {
-    localStorage.setItem('contactData', JSON.stringify(data));
+  // 🔹 Upload image to Firebase Storage
+  uploadImage(file: File): Observable<string | undefined> {
+    const filePath = `${this.projectName}/about/${Date.now()}_${file.name}`; // 🔹 project-based path
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    return new Observable<string | undefined>((observer) => {
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe({
+            next: (url) => {
+              observer.next(url);
+              observer.complete();
+            },
+            error: (err) => observer.error(err)
+          });
+        })
+      ).subscribe();
+    });
   }
 
+  // 🔹 Save contact data to Firestore
+  saveContact(data: any) {
+    return this.firestore.collection(this.contactCollection).add(data);
+  }
+
+  // 🔹 Delete all local contact data
   deleteContact() {
     localStorage.removeItem('contactData');
   }
-  
 }

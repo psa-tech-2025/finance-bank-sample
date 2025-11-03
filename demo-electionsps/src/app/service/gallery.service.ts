@@ -17,7 +17,8 @@ export interface GalleryPhoto {
   providedIn: 'root',
 })
 export class GalleryService {
-  private collectionName = 'Gallery';
+  private projectName = 'financedemo'; // 🔹 Project name
+  private subCollectionName = 'Gallery'; // 🔹 Subcollection name
 
   constructor(
     private firestore: AngularFirestore,
@@ -27,7 +28,9 @@ export class GalleryService {
   // 🔹 Fetch all gallery photos
   getAll(): Observable<GalleryPhoto[]> {
     return this.firestore
-      .collection<GalleryPhoto>(this.collectionName, (ref) =>
+      .collection(this.projectName) // Collection: financedemo
+      .doc(this.projectName) // Document: financedemo
+      .collection<GalleryPhoto>(this.subCollectionName, (ref) =>
         ref.orderBy('createdAt', 'desc')
       )
       .snapshotChanges()
@@ -48,42 +51,60 @@ export class GalleryService {
     const createdAt = Date.now();
 
     if (file) {
-      const filePath = `Gallery/${id}_${file.name}`;
+      const filePath = `${this.projectName}/${this.subCollectionName}/${id}_${file.name}`;
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
 
-      await task.snapshotChanges()
+      await task
+        .snapshotChanges()
         .pipe(
           finalize(async () => {
             const imageUrl = await fileRef.getDownloadURL().toPromise();
-            await this.firestore.collection(this.collectionName).doc(id).set({
-              ...photo,
-              imageUrl,
-              createdAt,
-            });
+            await this.firestore
+              .collection(this.projectName)
+              .doc(this.projectName)
+              .collection(this.subCollectionName)
+              .doc(id)
+              .set({
+                ...photo,
+                imageUrl,
+                createdAt,
+              });
           })
         )
         .toPromise();
     } else {
-      await this.firestore.collection(this.collectionName).doc(id).set({
-        ...photo,
-        createdAt,
-      });
+      await this.firestore
+        .collection(this.projectName)
+        .doc(this.projectName)
+        .collection(this.subCollectionName)
+        .doc(id)
+        .set({
+          ...photo,
+          createdAt,
+        });
     }
   }
 
   // 🔹 Update existing photo
   async update(id: string, photo: GalleryPhoto, file?: File): Promise<void> {
+    const docRef = this.firestore
+      .collection(this.projectName)
+      .doc(this.projectName)
+      .collection(this.subCollectionName)
+      .doc(id);
+
     if (file) {
-      const filePath = `Gallery/${id}_${file.name}`;
+      const filePath = `${this.projectName}/${this.subCollectionName}/${id}_${file.name}`;
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
 
-      await task.snapshotChanges()
+      await task
+        .snapshotChanges()
         .pipe(
           finalize(async () => {
             const imageUrl = await fileRef.getDownloadURL().toPromise();
-            await this.firestore.collection(this.collectionName).doc(id).update({
+            await docRef.update({
               ...photo,
               imageUrl,
             });
@@ -91,12 +112,17 @@ export class GalleryService {
         )
         .toPromise();
     } else {
-      await this.firestore.collection(this.collectionName).doc(id).update(photo);
+      await docRef.update(photo);
     }
   }
 
   // 🔹 Delete photo
   async delete(id: string): Promise<void> {
-    await this.firestore.collection(this.collectionName).doc(id).delete();
+    await this.firestore
+      .collection(this.projectName)
+      .doc(this.projectName)
+      .collection(this.subCollectionName)
+      .doc(id)
+      .delete();
   }
 }
